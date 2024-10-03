@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SB Admin 2 - Blog</title>
+    <title>Blog</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,7 +22,6 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.html">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -30,10 +29,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="dashboard.html">
@@ -42,7 +38,7 @@
             </li>
 
             <!-- Nav Item - Slider -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="slider.html">
                     <i class="fas fa-fw fa-sliders-h"></i>
                     <span>Slider</span></a>
@@ -56,13 +52,13 @@
             </li>
 
             <!-- Nav Item - Blog -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="blog.html">
                     <i class="fas fa-fw fa-blog"></i>
                     <span>Blog</span></a>
             </li>
-
         </ul>
+        
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -73,15 +69,12 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
-                            <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -105,57 +98,115 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Blog</h1>
-                    <p class="mb-4">Here you can find our latest blog posts.</p>
-
-                    <!-- Blog Posts -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Blog Post Title 1</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>This is a summary of the blog post content. Click below to read more.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
+                    <!-- Card for Blog Management -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Blog</h6>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Blog Post Title 2</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>This is a summary of the blog post content. Click below to read more.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Blog Post Title 3</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>This is a summary of the blog post content. Click below to read more.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Blog Post Title 4</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>This is a summary of the blog post content. Click below to read more.</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
-                                </div>
+                        <div class="card-body">
+                            <a href="tambah_blog.html" class="btn btn-primary mb-2">Tambah Blog</a>
+                            <div class="table-responsive">
+                                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Judul</th>
+                                            <th>File</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Example data, replace this with your dynamic data -->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Judul Blog Pertama</td>
+                                            <td><img src="path/to/image1.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=1" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=1" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Judul Blog Kedua</td>
+                                            <td><img src="path/to/image2.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=2" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=2" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <td>3</td>
+                                            <td>Judul Blog Ketiga</td>
+                                            <td><img src="path/to/image3.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=3" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=3" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Judul Blog Keempat</td>
+                                            <td><img src="path/to/image4.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=4" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=4" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Judul Blog Kelima</td>
+                                            <td><img src="path/to/image5.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=5" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=5" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Judul Blog Keenam</td>
+                                            <td><img src="path/to/image6.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=6" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=6" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>Judul Blog Ketujuh</td>
+                                            <td><img src="path/to/image7.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=7" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=7" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>Judul Blog Kedelapan</td>
+                                            <td><img src="path/to/image8.jpg" width="200" alt="images"></td>
+                                            <td>
+                                                <a href="edit_blog.html?id=8" class="btn btn-warning">Edit</a>
+                                                <form action="delete_blog.php?id=8" method="post" style="display:inline;">
+                                                    <button class="btn btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <!-- Tambahkan lebih banyak entri sesuai kebutuhan -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -170,7 +221,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2024</span>
+                        <span>Copyright &copy; Siti Anisah</span>
                     </div>
                 </div>
             </footer>
