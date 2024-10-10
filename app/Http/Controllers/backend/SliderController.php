@@ -17,4 +17,13 @@ class SliderController extends Controller
             'blogs'=>$blogs,
         ]);
     }
+    public function tambah()
+    {
+        // Menampilkan form untuk menambah blog
+        return view('backend.sliders.tambah');
+    }
+    public function aksi_tambah()
+    {
+        
+    }
 }
