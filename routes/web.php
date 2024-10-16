@@ -14,6 +14,8 @@ Route::get('/blog/{id}', [BlogController::class, 'blogdetail'])->name('blogdetai
 //backend
 Route::get('/login',[LoginController::class,'index'])->name('backend.login');
 Route::get('backend/blog',[BackendBlogController::class,'index'])->name('backend.blog');
+Route::get('backend/blog/tambah',[BackendBlogController::class,'tambah'])->name('backend.blog.tambah');
+Route::post('backend/blog/aksi_tambah',[BackendBlogController::class,'aksi_tambah'])->name('backend.blog.aksi_tambah');
 Route::get('backend/slider',[SliderController::class,'index'])->name('backend.slider');
 Route::get('backend/slider/tambah',[SliderController::class,'tambah'])->name('backend.slider.tambah');
 Route::post('backend/slider/aksi_tambah',[SliderController::class,'aksi_tambah'])->name('backend.slider.aksi_tambah');
