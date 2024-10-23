@@ -28,7 +28,13 @@ class BlogController extends Controller
             'title' => 'required',
             'description' => 'required',
             'file' => 'required|file|mimes:jpeg,png|max:2048', // Perbaiki MIME types
-        ]);
+        ],
+    [
+        'title.required' => 'Judul harus di isi!!',
+        'description.required' => 'Deskripsi harus di isi!!',
+        'file.required' => 'File harus di isi dengan foto!!',
+        'file.max' => 'Max file nyaa 2 mb'
+    ]);
     //Mengumpulkan data dari request (input dari user) dan 
     //menyiapkan data yang akan disimpan ke database, seperti title, description, slug (slugifikasi dari title), 
     //serta created_at dan created_by (dalam hal ini nilainya 0, tapi nanti bisa diganti dengan ID user yang login).
@@ -63,6 +69,49 @@ class BlogController extends Controller
     //Setelah data berhasil disimpan, pengguna akan dialihkan kembali ke halaman blog dengan pesan sukses.
         return redirect()->route('backend.blog')->with('success', 'Blog berhasil ditambahkan');
     }
+    public function aksi_hapus($id){
+        $ambilDataBlog = Blogs::where('id', $id)->first();
+        Blogs::where('id', $id)->delete();
+        $this->hapus_gambar(public_path($ambilDataBlog->file));
+        return redirect()->back()->with('success', 'Blog berhasil dihapus');
+    }
     
+    protected function hapus_gambar($gambar){
+        if (file_exists($gambar)) {
+            unlink($gambar);
+        }
+    }
+    public function edit($id){
+        $blogs = Blogs::where('id',$id)->first();
+        return view('backend.blog.edit', compact('blogs'));
+    }
+    public function aksi_edit(Request $request,$id){
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'file' => 'required|file|mimes:jpeg,png|max:2048',
+        ]);
+    
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'slug' => Str::slug($request->title),
+            'created_by' => 0,
+            'created_at' =>date('Y-m-d h:i:s')
+        ];
+    
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('blog'), $filename);
+            $data['file'] = 'blog/' . $filename;
+            $ambilDataBlog=Blogs::where('id',$id)->first();
+            $this->hapus_gambar($ambilDataBlog->file);
+        }
+    
+        Blogs::where('id',$id)->update($data);
+    
+        return redirect()->route('backend.blog');
+    }
 }
 
