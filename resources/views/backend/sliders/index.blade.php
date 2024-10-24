@@ -23,8 +23,8 @@
                           <td>{{$item->title}}</td>
                           <td><img src="{{asset($item->file)}}" width="200" alt="images"></td>
                           <td>{{$item->description}}</td>
-                          <td><a href="" class="btn btn-warning">edit</a>
-                            <form action="" method="post">
+                          <td><a href="{{route('backend.slider.edit',$item->id)}}" class="btn btn-warning">edit</a>
+                            <form action="{{route('backend.slider.hapus',$item->id)}}" method="post">
                                 @csrf
                                 <button class="btn btn-danger">Hapus</button>
                             </form>
