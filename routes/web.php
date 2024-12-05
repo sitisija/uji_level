@@ -1,29 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\backend\BlogController as BackendBlogController;
-use App\Http\Controllers\backend\SliderController;
-use App\Http\Controllers\backend\ServiceController;
-use App\Http\Controllers\backend\LoginController;
+use App\Http\Controllers\UjiLevelController;
+use App\Http\Controllers\ProdukSayaController;
+use App\Http\Controllers\DataProdukController;
+use App\Http\Controllers\KategoriController;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
-Route::get('/blog/{id}', [BlogController::class, 'blogdetail'])->name('blogdetail');
-//backend
-Route::get('/login',[LoginController::class,'index'])->name('backend.login');
-Route::get('backend/blog',[BackendBlogController::class,'index'])->name('backend.blog');
-Route::get('backend/blog/tambah',[BackendBlogController::class,'tambah'])->name('backend.blog.tambah');
-Route::post('backend/blog/aksi_tambah',[BackendBlogController::class,'aksi_tambah'])->name('backend.blog.aksi_tambah');
-Route::get('backend/blog/edit/{id}', [BackendBlogController::class,'edit'])->name('backend.blog.edit');
-Route::post('backend/blog/aksi_edit/{id}', [BackendBlogController::class,'aksi_edit'])->name('backend.blog.aksi_edit');
-Route::post('backend/blog/aksi_hapus/{id}', [BackendBlogController::class,'aksi_hapus'])->name('backend.blog.aksi_hapus');
-Route::get('backend/slider',[SliderController::class,'index'])->name('backend.slider');
-Route::get('backend/slider/edit/{id}',[SliderController::class,'edit'])->name('backend.slider.edit');
-Route::get('backend/slider/aksi_edit/{id}',[SliderController::class,'aksi_edit'])->name('backend.sliders.aksi_edit');
-Route::get('backend/slider/tambah',[SliderController::class,'tambah'])->name('backend.slider.tambah');
-Route::post('backend/slider/aksi_tambah',[SliderController::class,'aksi_tambah'])->name('backend.slider.aksi_tambah');
-Route::post('backend/slider/hapus/{id}', [SliderController::class, 'hapus'])->name('backend.slider.hapus');
-Route::get('backend/layanan',[ServiceController::class,'index'])->name('backend.service');
 
+Route::get('/', function () {
+    return view('layouts.master');
+});
+
+Route::get('/uji-level', [UjiLevelController::class, 'index'])->name('uji.level');
+Route::get('/produk-saya', [ProdukSayaController::class, 'index'])->name('produk.saya');
+Route::get('/data-produk', [DataProdukController::class, 'index'])->name('data.produk');
+Route::get('/data-produk/tambah', [DataProdukController::class, 'tambah'])->name('data.produk.tambah');
+Route::post('/data-produk/aksi_tambah', [DataProdukController::class, 'aksi_tambah'])->name('data.produk.aksi_tambah');
+Route::get('/data-produk/edit{id}', [DataProdukController::class, 'edit'])->name('data.produk.edit');
+Route::post('/data-produk/aksi_edit{id}', [DataProdukController::class, 'aksi_edit'])->name('data.produk.aksi_edit');
+Route::post('/data-produk/aksi_hapus{id}', [DataProdukController::class, 'aksi_hapus'])->name('data.produk.aksi_hapus');
+Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
+Route::get('/kategori/tambah', [KategoriController::class, 'tambah'])->name('kategori.tambah');
+Route::post('/kategori/aksi_tambah', [KategoriController::class, 'aksi_tambah'])->name('kategori.aksi_tambah');
+Route::get('/kategori/edit{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+Route::post('/kategori/aksi_edit{id}', [KategoriController::class, 'aksi_edit'])->name('kategori.aksi_edit');
+Route::delete('/kategori/aksi_hapus{id}', [KategoriController::class, 'aksi_hapus'])->name('kategori.aksi_hapus');
