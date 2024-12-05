@@ -7,7 +7,7 @@ use PhpParser\Node\Stmt\Return_;
 
 class UjiLevelController extends Controller
 {
-    public function ujilevel(){
+    public function index(){
         return view('uji-level.index');
     }
 }
