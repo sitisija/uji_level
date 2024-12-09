@@ -1,17 +1,17 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Products;
-use App\Models\Category;
+use App\Models\Produk;
+use App\Models\Kategori;
 
 class ProdukSayaController extends Controller
 {
     public function index(Request $request)
 {
     $categoryId = $request->get('category');
-    $categories = Category::all();
+    $categories = Kategori::all();
 
-    $products = Products::when($categoryId, function ($query) use ($categoryId) {
+    $products = Produk::when($categoryId, function ($query) use ($categoryId) {
         $query->where('category_id', $categoryId);
     })->get();
 

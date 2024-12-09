@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Products;
+use App\Models\Kategori;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 class KategoriController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Kategori::all();
         return view('category.index', compact('categories'));
     }
     public function tambah()
     {
-        $categories = Category::get();
+        $categories = Kategori::get();
         return view('category.tambah', compact('categories'));
     }
     public function aksi_tambah(Request $request){
@@ -24,11 +24,11 @@ class KategoriController extends Controller
             'title'=>$request->title,
         ];
     
-        Category::insert($data);
+        Kategori::insert($data);
         return redirect()->route('kategori');
     }
     public function edit($id){
-        $categories = Category::where('id',$id)->first();
+        $categories = Kategori::where('id',$id)->first();
         return view('category.edit', compact('categories'));
     }
     public function aksi_edit(Request $request, $id)
@@ -40,12 +40,12 @@ class KategoriController extends Controller
     $data = [
         'title' => $request->title,
     ];
-    Category::where('id', $id)->update($data);
+    Kategori::where('id', $id)->update($data);
     return redirect()->route('kategori');
 }
     public function aksi_hapus($id)
     {
-        Category::where('id', $id)->delete();
+        Kategori::where('id', $id)->delete();
         return redirect()->route('kategori');
     }
     

@@ -1,31 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk</title>
-</head>
-<body>
-    <h1>Produk</h1>
-
-    <form method="get" action="{{ route('produk.index') }}">
-        <label for="category">Kategori:</label>
-        <select name="category" id="category">
-            <option value="">Semua Kategori</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                    {{ $category->name }}
-                </option>
-            @endforeach
-        </select>
-        <button type="submit">Filter</button>
-    </form>
-
-    <h2>Daftar Produk</h2>
-    <ul>
-        {{-- @foreach($products as $product)
-            <li>{{ $products->name }} - {{ $products->category->name }}</li>
-        @endforeach --}}
-    </ul>
-</body>
-</html>
+@extends('layouts.master')
+@section('content')
+<h1 class="mb-3">Data Produk</h1>
+    <div class="card-body">
+        <a href="{{route('produk.tambah')}}" class="btn btn-primary mb-2">Tambah</a>
+        <div class="table-responsive">
+            <table class="table" id="dataTable" width="100%" cellspacing="0"> 
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Harga</th>
+                        <th>Diskon</th>
+                        <th>File</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                @foreach ($products as $item)
+                      <tr>
+                          <td>{{$item->id}}</td>
+                          <td>{{$item->title}}</td>
+                          <td>{{$item->description}}</td>
+                          <td>{{$item->price}}</td>
+                          <td>{{$item->discount}}</td>
+                          <td><img src="{{asset($item->file)}}" width="200" alt="images"></td>
+                          <td>
+                        <div class="d-flex ">
+                            <form action="{{route('produk.aksi_hapus',$item->id)}}" method="post">
+                                @csrf
+                                <button class="btn btn-danger me-2">Hapus</button>
+                            </form>
+                            <a href="{{route('produk.edit',$item->id)}}" class="btn btn-warning">edit</a>
+                        </div>
+                        </td>
+                        </tr>
+                    </tbody>
+                    @endforeach
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
